@@ -1,0 +1,192 @@
+
+
+================================================================================
+
+| Key Binding        | Purpose                   |
+|--------------------+---------------------------|
+| C-d                | Delete character          |
+| <backspace>        | Delete previous character |
+| M-d, C-<backspace> | Kill word                 |
+| C-k                | Kill rest of line         |
+| M-k                | Kill sentence             |
+| C-M-k              | Kill s-expression         |
+| C-S-<backspace>    | Kill current line         |
+
+
+| Key Binding | Kill Ring Purpose        | Clipboard |
+|-------------+--------------------------+-----------|
+| C-w         | Kill active region       | cut       |
+| M-w         | Copy to kill ring        | copy      |
+| C-M-w       | Append kill              |           |
+| C-y         | Yank last kill           | paste     |
+| M-y         | Cycle through kill ring, |           |
+|             | replacing yanked text    |           |
+
+
+M-x package-install RET whole-line-or-region RET
+    ‘M-w’ copies the current line when the region is not active, and
+    ‘C-w’ deletes it.
+
+
+C-k will not kill the newline character at the end of the line; If you
+prefer, you can force C-k to kill the newline also:
+M-x customize-option RET kill-whole-line RET
+
+
+================================================================================
+
+| Key Binding              | Purpose                 |
+|--------------------------+-------------------------|
+| C-t                      | Transpose characters    |
+| M-t                      | Transpose words         |
+| C-M-t                    | Transpose s-expressions |
+| C-x C-t                  | Transpose lines         |
+| M-x transpose-paragraphs | Transpose paragraphs    |
+| M-x transpose-sentences  | Transpose sentences     |
+
+
+| Key Binding        | Purpose                           |
+|--------------------+-----------------------------------|
+| M-q                | Refills the paragraph point is in |
+| C-x f              | Sets the fill column width        |
+| C-x .              | Sets the fill prefix              |
+| M-x auto-fill-mode | Toggles auto-filling              |
+
+
+| Key Binding     | Purpose                                                   |
+|-----------------+-----------------------------------------------------------|
+| M-;             | Comment or uncomment DWIM                                 |
+| C-x C-;         | Comment or uncomment line                                 |
+| M-x comment-box | Comments the region but as a box                          |
+| M-j, C-M-j      | Inserts new line and continues with comment on a new line |
+
+
+================================================================================
+
+| Key Binding        | Purpose                         |
+|--------------------+---------------------------------|
+| C-M-%              | Query regexp search and replace |
+| M-%                | Query search and replace        |
+| M-x replace-string | Search and replace              |
+| M-x replace-regexp | Regexp search and replace       |
+
+
+| Query Key Binding | Purpose                            |
+|-------------------+------------------------------------|
+| SPC, y            | Replaces one match, then continues |
+| .                 | Replaces one match, then exit      |
+| RET, q            | Exits without replacing match      |
+| !                 | Replaces all matches in buffer     |
+| ^                 | Moves point back to previous match |
+
+
+================================================================================
+
+By default, M-x delete-duplicate-lines deletes the first duplicate
+line it encounters, starting from the top. With a single universal
+argument, it starts from the bottom and therefore deletes the last.
+
+| Universal Argument | Description                          |
+|--------------------+--------------------------------------|
+| Without            | Deletes first duplicate line         |
+| C-u                | Deletes last duplicate line          |
+| C-u C-u            | Deletes only adjacent duplicates     |
+| C-u C-u C-u        | Does not delete adjacent blank lines |
+
+
+if you want to do this on a whole buffer – to call C-x h to
+select the entire buffer first.
+
+| Command         | Description                                                                  |
+|-----------------+------------------------------------------------------------------------------|
+| M-x flush-lines | Flueshes (deletes) all lines in a region that match a pattern                |
+| M-x keep-lines  | Keeps all lines in a region that match a pattern and removes all non-matches |
+
+
+| Key Binding | Description                                        |
+|-------------+----------------------------------------------------|
+| C-o         | Inserts a blank line after point                   |
+| C-x C-o     | Deletes all blank lines after point                |
+| C-M-o       | Splits a line after point, keeping the indentation |
+| M-^         | Joins the line the point is on with the one above  |
+
+
+| Command           | Description                                                         |
+|-------------------+---------------------------------------------------------------------|
+| M-SPC             | Deletes all but one space or tab to the left and right of the point |
+| M-x cycle-spacing | As above but cycles through all but one, all, and undo              |
+| M-\\              | Deletes all spaces and tabs around the point                        |
+
+
+| Command                       | Description                                           |
+|-------------------------------+-------------------------------------------------------|
+| M-x whitespace-mode           | Minor mode that highlights all whitespace characters  |
+| M-x whitespace-newline-mode   | Minor mode that displays newline characters with a $  |
+| M-x whitespace-toggle-options | Displays a toggle menu of all whitespace-mode options |
+
+
+| Command                        | Description                 |
+|--------------------------------+-----------------------------|
+| M-x whitespace-report          | Shows whitespace issues     |
+| M-x whitespace-report-region   | As above but for the region |
+| M-x whitespace-clean-up        | Attemps automatic cleanup   |
+| M-x whitespace-clean-up-region | As above but for the region |
+
+
+================================================================================
+
+| Key Binding   | Description                                      |
+|---------------+--------------------------------------------------|
+| F3            | Starts macro recording, or inserts counter value |
+| F4            | Stops macro recording or plays last macro        |
+| C-x (and C-x) | Starts and stops macro recording                 |
+| C-x e         | Plays last macro                                 |
+| C-u F3        | Starts recording but appends to the last macro   |
+| C-u F4        | Plays the second macro in the ring               |
+| numeric F3    | Starts recording but sets counter to numeric     |
+| numeric F4    | Plays last macro numeric times                   |
+
+Numeric, in this case, means numbers such as C-u 10 or M-10.
+
+
+================================================================================
+
+Of all the choices above, I would focus my attention on YAsnippet for
+templating, as it comes with a large array of snippets for many major
+modes and Hippie Expand since it’s a great productivity booster.
+
+Add this to your init file to switch to Hippie Expand:
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
+
+Hippie Expand expands more than just words. The variable
+hippie-expand-try-functions-list is an ordered list of expansion
+functions Hippie Expand will call with the text at the point when you
+call M-/.
+
+
+================================================================================
+
+Electric Indent mode is a global minor mode that automatically indents
+the line after every <RET> you type. This mode is enabled by
+default. To toggle this minor mode, type M-x electric-indent-mode. To
+toggle the mode in a single buffer, use M-x
+electric-indent-local-mode.
+
+
+| Key and Command    | Description                                         |
+|--------------------+-----------------------------------------------------|
+| TAB                | Indents line using major mode's indentation command |
+| M-i                | Inserts spaces or tabs to next tab stop             |
+| M-x edit-tab-stops | Edits tab stops                                     |
+
+
+| Key and Command | Description                                      |
+|-----------------+--------------------------------------------------|
+| TAB             | Indents a line or region as per the major mode   |
+| C-M-\           | Indents using major mode's region indent command |
+| C-x TAB         | Rigidly indents                                  |
+
+
+
+
+

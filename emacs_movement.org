@@ -1,0 +1,357 @@
+
+
+================================================================================
+
+| Key Binding | Purpose                       |
+|-------------+-------------------------------|
+| C-x C-f     | Find (open) a file            |
+| C-x C-s     | Save the buffer               |
+| C-x b       | Switch buffer                 |
+| C-x k       | Kill (close) a buffer         |
+| C-x C-b     | Display all open buffers      |
+| C-x C-c     | Exits Emacs                   |
+| ESC ESC ESC | Exits out of prompts,         |
+|             | regions, prefix arguments and |
+|             | returns to just one window    |
+| C-/         | Undo changes                  |
+| F10         | Activates the menu bar        |
+
+
+| Key Binding | Purpose                   |
+|-------------+---------------------------|
+| C-x 0       | Deletes the active window |
+| C-x 1       | Deletes other windows     |
+| C-x 2       | Split window below        |
+| C-x 3       | Split window right        |
+| C-x o       | Switch active window      |
+
+(global-set-key (kbd "M-o") 'other-window)
+
+
+| Key Binding | Purpose                                 |
+|-------------+-----------------------------------------|
+| C-x 4 C-f   | Finds a file in the other window        |
+| C-x 4 d     | Opens M-x dired in the other window     |
+| C-x 4 C-o   | Displays a buffer in the other window   |
+| C-x 4 b     | Switches the buffer in the other window |
+|             | and makes it the active window          |
+| C-x 4 0     | Kills the buffer and window             |
+
+
+| Key Binding | Purpose                               |
+|-------------+---------------------------------------|
+| C-x 5 2     | Create a new frame                    |
+| C-x 5 b     | Switch buffer in other frame          |
+| C-x 5 0     | Delete active frame                   |
+| C-x 5 1     | Delete other frames                   |
+| C-x 5 C-f   | Finds a file in the other window      |
+| C-x 5 d     | Opens M-x dired in the other window   |
+| C-x 5 C-o   | Displays a buffer in the other window |
+
+
+================================================================================
+
+M-m : Moves point to the first non-whitespace character on this line
+
+M-f, M-b : Moving by Word
+
+| Command            | Purpose                           |
+|--------------------+-----------------------------------|
+| M-x subword-mode   | Minor mode that treats CamelCase  |
+|                    | as distinct words                 |
+| M-x superword-mode | Minor mode that treats snake_case |
+|                    | as one word                       |
+
+M-x customize-option global-subword-mode
+M-x customize-option global-superword-mode
+
+
+| Key Binding | Purpose                       |
+|-------------+-------------------------------|
+| C-M-f       | Move forward by s-expression  |
+| C-M-b       | Move backward by s-expression |
+
+
+| Key Binding | Purpose               |
+|-------------+-----------------------|
+| C-M-d       | Move down into a list |
+| C-M-u       | Move up out of a list |
+
+
+| Key Binding | Purpose                            |
+|-------------+------------------------------------|
+| C-M-n       | Move forward to the next list      |
+| C-M-p       | Move backward to the previous list |
+
+C-M-k for kill-sexp
+
+
+| Key Binding | Purpose                             |
+|-------------+-------------------------------------|
+| M-}         | Move forward to end of paragraph    |
+| M-{         | Move backward to start of paragraph |
+
+
+| Key Binding | Purpose                       |
+|-------------+-------------------------------|
+| M-a         | Move to beginning of sentence |
+| M-e         | Move to end of sentence       |
+
+
+| Key Binding | Purpose                    |
+|-------------+----------------------------|
+| C-M-a       | Move to beginning of defun |
+| C-M-e       | Move to end of defun       |
+
+
+| Key Binding | Purpose                      |
+|-------------+------------------------------|
+| C-v         | Scroll down one page         |
+| M-v         | Scroll up one page           |
+| C-M-v       | Scroll down the other window |
+| C-M-S-v     | Scroll up the other window   |
+
+C-M-- C-M-v
+
+
+| Key Binding | Purpose                             |
+|-------------+-------------------------------------|
+| M-<         | Move to the beginning of the buffer |
+| M->         | Move to the end of the buffer       |
+
+you can type C-u C-<SPC> to go back.
+
+
+================================================================================
+
+| Key Binding | Purpose          |
+|-------------+------------------|
+| C-x r m     | Set a bookmark   |
+| C-x r l     | List bookmarks   |
+| C-x r b     | Jump to bookmark |
+
+where bookmarks are permanent, registers are transient.  A register is
+a single character only.
+
+| Key Binding | Purpose                                |
+|-------------+----------------------------------------|
+| C-x r n     | Store number in register               |
+| C-x r s     | Store region in register               |
+| C-x r SPC   | Store point in register                |
+| C-x r +     | Increment number in register           |
+| C-x r j     | Jump to register                       |
+| C-x r i     | Insert content of register             |
+| C-x r w     | Store window configuration in register |
+| C-x r f     | Store frameset in register             |
+
+C-x r s is the one I use most frequently. It stores the region in a
+register – simple and useful – and C-x r i which inserts the content
+of a register at point.
+
+
+================================================================================
+
+| Key Binding   | Purpose                                       |
+|---------------+-----------------------------------------------|
+| C-<SPC>       | Sets the mark, and toggles the region         |
+| C-u C-<SPC>   | Jumps to the mark, and repeated calls         |
+|               | go further back the mark ring                 |
+| S+<left>, ... | Shift selection similar to other editors      |
+| C-x C-x       | Exchanges the point and mark, and reactivates |
+|               | your last region                              |
+
+
+| Key Binding   | Purpose                     |
+|---------------+-----------------------------|
+| M-h           | Marks the next paragraph    |
+| C-x h         | Marks the whole buffer      |
+| C-M-h         | Marks the next defun        |
+| C-x C-p       | Marks the next page         |
+| M-@           | Marks the next word         |
+| C-M-<SPC> and |                             |
+| C-M-@         | Marks the next s-expression |
+| C-<SPC>, C-g  | Deactivates the region      |
+
+
+================================================================================
+
+Case Folding
+a clever feature in Emacs that intelligently matches string case
+insensitively unless you search for a mixed case or uppercase string,
+at which point it activates case-sensitive search.
+
+
+| Key Binding | Purpose                                     |
+|-------------+---------------------------------------------|
+| C-s         | Begins an incremental search                |
+| C-r         | Begins a backward incremental search        |
+| C-M-s       | Begins a regexp incremental search          |
+| C-M-r       | Begins a regexp backward incremental search |
+| RET         | Pick the selected match                     |
+| C-g         | Exit Isearch                                |
+
+
+| Key Binding        | Purpose                         |
+|--------------------+---------------------------------|
+| C-M-%              | Query regexp search and replace |
+| M-%                | Query search and replace        |
+
+
+| Isearch Key Binding | Purpose                                     |
+|---------------------+---------------------------------------------|
+| M-n                 | Move to next item in search history         |
+| M-p                 | Move to previous item in search history     |
+| C-M-i               | TAB complete search string against          |
+|                     | previous search ring                        |
+| C-s C-s             | Begins Isearch against last search string   |
+| C-r C-r             | Begins backward Isearch against last string |
+
+
+| Isearch Key Binding | Purpose                                     |
+|---------------------+---------------------------------------------|
+| C-w                 | Add word at point to search string          |
+| C-M-y               | Add character at point to search string     |
+| M-s C-e             | Add rest of line at point to search         |
+|                     | string (Emacs 24.4 or later)                |
+| C-y                 | Yank from clipboard to search string        |
+
+
+| Isearch Key Binding | Purpose                         |
+|---------------------+---------------------------------|
+| M-s c               | Toggles case-sensitivity        |
+| M-s r               | Toggles regular-expression mode |
+| M-s w               | Toggles word mode               |
+| M-s _               | Toggles symbol mode             |
+| M-s <SPC>           | Toggles lax whitespace matching |
+
+
+| Key Binding | Purpose                             |
+|-------------+-------------------------------------|
+| M-s w       | Isearch forward for word            |
+| M-s _       | Isearch forward for symbol          |
+| M-s .       | Isearch forward for symbol at point |
+
+
+================================================================================
+
+| Key Binding | Purpose                                                |
+|-------------+--------------------------------------------------------|
+| M-s o       | Occur mode                                             |
+| M-s o       | Activate occur on current search string inside Isearch |
+
+
+| Occur Key Binding | Purpose                                          |
+|-------------------+--------------------------------------------------|
+| M-n, M-p          | Go to next and previous occurrence               |
+| <, >              | Go to beginning and end of buffer                |
+| g                 | Revert the buffer, refreshing the search results |
+| q                 | Quits occur mode                                 |
+| e                 | Switches to occur edit mode                      |
+| C-c C-c           | Exits occur edit mode and applies changes        |
+
+
+| Key Binding | Purpose                |
+|-------------+------------------------|
+| M-g M-n     | Jump to next error     |
+| M-g M-p     | Jump to previous error |
+
+
+M-x multi-occur-in-matching-buffers takes a regular expression
+of buffers to match but otherwise works the same as M-x occur.
+
+
+================================================================================
+
+(global-set-key (kbd "M-i") 'imenu)
+
+
+(require 'helm)
+
+| Prefix Key Binding | Purpose                                     |
+|--------------------+---------------------------------------------|
+| C-x c              | Prefix key for all Helm completion commands |
+
+Describe the prefix key
+C-x c C-h
+
+
+| Helm Key Binding | Purpose                              |
+|------------------+--------------------------------------|
+| RET              | Primary action                       |
+| C-e              | Secondary action                     |
+| C-j              | Tertiary action                      |
+| TAB              | Switch to action selector            |
+| C-n, C-p         | Next and previous candidate          |
+| M-<, M->         | Beginning and end of completion list |
+
+
+Here are some of the more useful Helm completion engines:
+| Key Binding | Purpose                                    |
+|-------------+--------------------------------------------|
+| C-x c b     | Resumes last Helm command                  |
+| C-x c /     | Invokes the command line utility find      |
+|             | on the active buffer's current directory   |
+| C-x c a     | Completes M-x apropos results              |
+| C-x c m     | Completion engine for the man page program |
+| C-x c i     | Lists completions sourced from             |
+|             | M-x imenu or Semantic                      |
+| C-x c r     | Interactive regular expression builder     |
+| C-x c h r   | Search Emacs topics in M-x info            |
+| C-x c M-x   | List completions sourced from M-x          |
+| C-x c M-s o | Use Helm to match M-x occur patterns       |
+| C-x c C-c g | Show matches from Google Suggest           |
+
+
+================================================================================
+
+IDO is a distraction-free, target-aware search
+Helm is for in-depth searching and completion
+
+
+These keys are only available when you run a command that
+requires you to pick a file or directory. That includes C-x
+C-f and C-x d, respectively, but it also includes things like
+file saving with C-x C-s:
+| Key Binding | Purpose                                    |
+|-------------+--------------------------------------------|
+| C-s and C-r | Move to the next and previous match        |
+| TAB         | Traditional non-IDO TAB-completion         |
+| RET         | Open selected match                        |
+| C-d         | Open M-x dired buffer in current directory |
+| //          | Go to root directory /                     |
+| ~/          | Go to home directory ~                     |
+| Backspace   | Delete a character or go up one directory  |
+
+
+Buffer switching is usually only encountered when you type C-x b:
+| Key Binding | Purpose                                |
+|-------------+----------------------------------------|
+| C-s and C-r | Move to the next and previous match    |
+| TAB         | Traditional non-IDO TAB-completion     |
+| RET         | Switch active buffer to selected match |
+
+
+Emacs supports a large array of grep and grep-derivative commands.
+
+The grep commands fall into two categories:
+Low-level commands like M-x grep and M-x grep-find.
+High-level commands like M-x lgrep, M-x rgrep and M-x rzgrep.
+
+I encourage you to browse the grep category with Customize
+and configure it to your liking:
+M-x customize-group RET grep RET
+
+
+================================================================================
+
+| Key Binding | Purpose                                                               |
+|-------------+-----------------------------------------------------------------------|
+| M-r         | Re-positions the point to the top left, middle left, or bottom left   |
+| C-l         | Re-centers the point to the middle, top, or bottom in the buffer      |
+| C-M-l       | Re-positions the comment or definition so it is in view in the buffer |
+| C-x C-n     | Sets the goal column, the horizontal position for the point           |
+| C-u C-x C-n | Resets the goal column, the horizontal position for the point         |
+| M-g M-g     | Go to line                                                            |
+| M-g TAB     | Go to column                                                          |
+| M-g c       | Go to character position                                              |
+
